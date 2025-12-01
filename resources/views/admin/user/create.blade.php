@@ -59,7 +59,19 @@
                                             value="{{ old('email') }}" placeholder="contoh@domain.com" required>
                                         <small class="form-text text-muted">Masukkan email</small>
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="role">Role</label>
+                                        <select class="form-select" name="role" id="role" required>
+                                            <option selected disabled value="">Pilih role...</option>
+                                            <option value="SuperAdmin">Super Admin</option>
+                                            <option value="Pelanggan">Pelanggan</option>
+                                            <option value="Mitra">Mitra</option>
+                                        </select>
+                                        <small class="form-text text-muted">Sesuai dengan tipe ENUM(Super Admin, Pelanggan,
+                                            Mitra)</small>
+                                    </div>
                                 </div>
+
 
                                 <div class="col-lg-6">
                                     <div class="mb-3">

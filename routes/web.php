@@ -34,12 +34,18 @@ Route::post('question/store', [QuestionController::class, 'store'])
 		->name('question.store');
 
 Route::get('dashboard', [DashboardController::class, 'index'])
-		->name('dashboard');
+		->name('dashboard')
+        ->middleware('checkislogin');
 
 
 Route::resource('pelanggan', PelangganController::class);
 
-Route::resource('user', UserController::class);
+Route::group(['middleware' => ['checkrole:SuperAdmin']], function(){
+    Route::resource('user', UserController::class);
+});
 
-Route::get('auth',[AuthController::class,'index']);
+
+
+Route::get('auth',[AuthController::class,'index'])->name('auth');
+Route::get('auth/logout',[AuthController::class,'logout'])->name('auth.logout');
 Route::post('auth/login',[AuthController::class,'login'])->name('auth.login');

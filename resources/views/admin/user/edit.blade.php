@@ -60,6 +60,17 @@
                                             value="{{ $user->email }}" placeholder="contoh@domain.com" required>
                                         <small class="form-text text-muted">Masukkan email</small>
                                     </div>
+                                    <div class="mb-3">
+                                        <label for="role">Role</label>
+                                        <select class="form-select" name="role" id="role" required>
+                                            <option selected >role</option>
+                                            <option value="SuperAdmin" {{$dataUser ->role == 'Super Admin' ? 'selected' : ''}}>Super Admin</option>
+                                            <option value="Pelanggan" {{$dataUser ->role == 'Pelanggan' ? 'selected' : ''}}>Pelanggan</option>
+                                            <option value="Mitra" {{$dataUser ->role == 'Mitra' ? 'selected' : ''}}>Mitra</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                        <small class="form-text text-muted">Sesuai dengan tipe ENUM(Super admin, pelanggan, mitra)</small>
+                                    </div>
                                 </div>
 
                                 <div class="col-lg-6">
