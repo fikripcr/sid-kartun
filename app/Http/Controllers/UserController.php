@@ -52,7 +52,8 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data['user'] = User::findOrFail($id);
+        return view('Admin.user.edit', $data);
     }
 
     /**
@@ -60,7 +61,23 @@ class UserController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name'  => 'required',
+            'email' => 'required',
+        ]);
+
+        $user_id = $id;
+        $user    = User::findOrFail($user_id);
+
+        $user->name  = $request->name;
+        $user->email = $request->email;
+        if ($request->password) {
+            $user->password = Hash::make($request->password);
+        }
+        $user->save();
+
+        return redirect()->route('user.index')->with('success', 'Penambahan Data Berhasil!');
+
     }
 
     /**
